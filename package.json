@@ -2,10 +2,11 @@
 	"name": "rayity",
 	"version": "0.3.3",
 	"scripts": {
-		"build": "tsc",
-		"watch": "tsc -w",
-		"postinstall": "tsc"
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview"
 	},
+
 	"main": "lib/index.js",
 	"files": [
 		"tsconfig.json",
@@ -14,6 +15,7 @@
 	"typings": "lib/index",
 	"license": "MIT",
 	"devDependencies": {
-		"typescript": "^2.3.4"
+		"vite": "^3.0.4",
+		"typescript": "^4.6.4"
 	}
 }
