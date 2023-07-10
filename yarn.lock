@@ -209,6 +209,11 @@ source-map-js@^1.0.2:
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
 
+spectorjs@^0.9.29:
+  version "0.9.29"
+  resolved "https://registry.yarnpkg.com/spectorjs/-/spectorjs-0.9.29.tgz#254220751fa6668d2c72777832d38bba95558ae1"
+  integrity sha512-WYbtN+uNR8g6Sr002VbaC6upZJPmwKSBD2SSMhjwWRkGbWSOhKSokeQXz5c+OGsbj/KrWcoz37g2NGttI5PJRw==
+
 supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"

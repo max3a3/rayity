@@ -1,0 +1,21 @@
+its all data driven
+
+the scene generate the object and its members [array of models]
+
+scene
+
+  models
+
+        the return data
+     		expression(`length(${p}) - 0.5`));
+
+the fragment generator depend on some sort of parser in expression
+ it has variable creation
+  expression()
+
+
+buildScene()
+    buildModel()
+
+renderer.ts
+  create the fragment shader

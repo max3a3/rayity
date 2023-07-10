@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="index-spector" type="JavascriptDebugType" uri="http://127.0.0.1:5173/index-spector.html" useFirstLineBreakpoints="true">
+    <mapping url="http://127.0.0.1:5173" local-file="$PROJECT_DIR$" />
+    <method v="2" />
+  </configuration>
+</component>
