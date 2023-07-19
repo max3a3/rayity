@@ -50,6 +50,8 @@ function buildModel(
 		cheapNormals: boolean
 	}): Code {
 	let distance = model.shape.call(variable("p"));
+
+	/* language=glsl */
 	let code = `
 	
 float distance${model.id}(vec3 p) {
@@ -76,6 +78,7 @@ Material material${model.id}(vec3 p, vec3 n, vec3 d) {
 }`;
 
 	if (options.cheapNormals)
+		/* language=glsl */
 		code += `
 
 vec3 normal${model.id}(vec3 p) {
@@ -92,6 +95,7 @@ vec3 normal${model.id}(vec3 p) {
 }`;
 
 	else
+		/* language=glsl */
 		code += `
 
 vec3 normal${model.id}(vec3 p) {
@@ -114,7 +118,8 @@ function buildScene(
 	}): Code {
 	return scene.models
 		.map(_ => buildModel(_, options))
-		.reduce((a, b) => a + b, "") + `
+		.reduce((a, b) => a + b, "") +
+		`
 		
 Closest calculateClosest(vec3 position) {
 	Closest closest;
@@ -166,14 +171,15 @@ Material calculateMaterial(int object, vec3 position, vec3 normal, vec3 directio
 export function build(
 	scene: Scene,
 	options: Options): Code {
+	/* language=glsl */
 	const code = `
 precision highp float;
 
 uniform sampler2D texture;
-uniform vec2 resolution;
-uniform vec2 mouse;
-uniform bool clicked;
-uniform float time;
+uniform vec2 iResolution;
+uniform vec2 iMouse;
+uniform bool iClicked;
+uniform float iTime;
 varying vec2 uv;
 
 const float PI = 3.14159;
@@ -203,7 +209,7 @@ vec3 calculateNormal(int object, vec3 position);
 Material calculateMaterial(int object, vec3 position, vec3 normal, vec3 direction);
 
 vec2 random(vec2 uv, int seed) {
-	vec2 s = (vec2(1) + uv) * float(seed) + time;
+	vec2 s = (vec2(1) + uv) * float(seed) + iTime;
 	return vec2(
 		fract(sin(dot(s.xy, vec2(12.9898, 78.233))) * 43758.5453),
 		fract(cos(dot(s.xy, vec2(4.898, 7.23))) * 23421.631));
@@ -247,7 +253,7 @@ void main() {
 	float fieldOfView = ${scene.camera.fieldOfView}.x;
 	float aperture = ${scene.camera.aperture}.x;
 	float focalFactor = ${scene.camera.focalFactor}.x;
-	float aspect = resolution.x / resolution.y;
+	float aspect = iResolution.x / iResolution.y;
 
 	Material air;		
 	air.refraction = ${scene.air.refraction}.x;
@@ -267,7 +273,7 @@ void main() {
 		vec2 offset = noise.x * aperture * vec2(cos(noise.y * 2.0 * PI), sin(noise.y * 2.0 * PI));
 		vec3 from = eye + offset.x * right + offset.y * up;
 
-		vec2 angle = (uv * 0.5 + (noise - 0.5) / resolution) * fieldOfView * vec2(aspect, 1);
+		vec2 angle = (uv * 0.5 + (noise - 0.5) / iResolution) * fieldOfView * vec2(aspect, 1);
 		vec3 screen = vec3(cos(angle.y) * sin(angle.x), sin(angle.y), cos(angle.y) * cos(angle.x));
 		vec3 to = eye + focalFactor * length(target - eye) * (right * screen.x + up * screen.y + look * screen.z);
 
@@ -354,7 +360,7 @@ void main() {
 
 	vec4 original = texture2D(texture, uv * 0.5 + 0.5);
 	
-	if (clicked) 
+	if (iClicked) 
 		original *= 0.5;
 
 	original *= ${options.memory.toFixed(10)}; 

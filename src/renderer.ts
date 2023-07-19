@@ -85,7 +85,9 @@ export function renderer(
 		throw gl.getShaderInfoLog(vertexShader);
 
 	const screenShader = gl.createShader(gl.FRAGMENT_SHADER);
-	gl.shaderSource(screenShader, build(scene, options));
+	const screenSrc = build(scene, options);
+//	console.log("screenshader",screenSrc)
+	gl.shaderSource(screenShader, screenSrc);
 	gl.compileShader(screenShader);
 	if (!gl.getShaderParameter(screenShader, gl.COMPILE_STATUS))
 		throw gl.getShaderInfoLog(screenShader);
@@ -117,7 +119,7 @@ export function renderer(
 
 	gl.useProgram(program);
 
-	const resolution = gl.getUniformLocation(program, "resolution");
+	const resolution = gl.getUniformLocation(program, "iResolution");
 	gl.uniform2f(resolution, options.width, options.height);
 
 	const position = gl.getAttribLocation(program, "position");
@@ -145,9 +147,9 @@ export function renderer(
 			gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, write, 0);
 			if (gl.checkFramebufferStatus(gl.FRAMEBUFFER) != gl.FRAMEBUFFER_COMPLETE)
 				throw "Framebuffer not ready";
-			gl.uniform1f(gl.getUniformLocation(program, "time"), variables_.time);
-			gl.uniform2f(gl.getUniformLocation(program, "mouse"), variables_.mouse.x, variables_.mouse.y);
-			gl.uniform1i(gl.getUniformLocation(program, "clicked"), variables_.clicked ? 1 : 0);
+			gl.uniform1f(gl.getUniformLocation(program, "iTime"), variables_.time);
+			gl.uniform2f(gl.getUniformLocation(program, "iMouse"), variables_.mouse.x, variables_.mouse.y);
+			gl.uniform1i(gl.getUniformLocation(program, "iClicked"), variables_.clicked ? 1 : 0);
 			gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
 
 

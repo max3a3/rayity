@@ -124,7 +124,7 @@ export function orbit(values?: OrbitOptions): Camera {
 	values.offset = values.offset || value(0, 0);
 	values.radius = values.radius || value(1);
 	const r = value(Math.PI, Math.PI / 2);
-	const q = spherical(expression(`vec3(mouse + ${values.offset}.xy + vec2(0.5, 1), 1) * ${r}`));
+	const q = spherical(expression(`vec3(iMouse + ${values.offset}.xy + vec2(0.5, 1), 1) * ${r}`));
 	return camera({
 		target: values.target,
 		eye: expression(

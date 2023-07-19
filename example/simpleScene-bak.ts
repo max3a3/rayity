@@ -6,7 +6,12 @@ const sceneOptions:SceneOptions= {
         offset: value(0.25, -0.5)
     }),
     models: [
-
+        model({
+            shape: plane(value(0, 1, 0), value(0.5)),
+            material: material({
+                color: value(0.6)
+            })
+        }),
         model({
             shape: translate(value(-0.5, 0, 0),
                 sphere()),

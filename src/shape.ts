@@ -36,8 +36,10 @@ export function unit(): Shape {
  * Sphere of diameter 1
  */
 export function sphere(): Shape {
-	return shape(p =>
-		expression(`length(${p}) - 0.5`));
+	return shape(p => {
+// debugger
+		return 		expression(`length(${p}) - 0.5`)
+	});
 }
 
 /** Plane given a `normal` and `offset` */

@@ -19,3 +19,12 @@ buildScene()
 
 renderer.ts
   create the fragment shader
+
+ ----
+
+ CHANGE
+add default normal material if not defined, currently it doesn't render
+
+rename uniform
+time -> iTime
+resolution -> iResolution
