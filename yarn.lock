@@ -179,6 +179,11 @@ picocolors@^1.0.0:
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.0.tgz#cb5bdc74ff3f51892236eaf79d68bc44564ab81c"
   integrity sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==
 
+picogl@^0.17.9:
+  version "0.17.9"
+  resolved "https://registry.yarnpkg.com/picogl/-/picogl-0.17.9.tgz#516d65314f77f71228a064574fac1e8194f3edb0"
+  integrity sha512-TfqB7jlD5FTO4a/Rp9wnMhVjPA0XZ/xbtLS2f8eHtOmVtIOhFD7Wf0jUL6kDjww3bgF/REEV9oPreBeGvWFlUQ==
+
 postcss@^8.4.18:
   version "8.4.25"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.25.tgz#4a133f5e379eda7f61e906c3b1aaa9b81292726f"

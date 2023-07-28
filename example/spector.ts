@@ -1,6 +1,6 @@
 import {Spector} from 'spectorjs';
 import {Options, scene, options as optionsInit, OptionsOptions} from "../src";
-import {renderer} from "../src/renderer";
+import {renderer2} from "../src/renderer2";
 import sceneOptions from "./simpleScene"
 
 const optionsSetting: OptionsOptions = {
@@ -16,18 +16,13 @@ function app()
     canvas.width = options.width;
     canvas.height = options.height;
 
-    const gl = canvas.getContext("webgl", {
-        preserveDrawingBuffer: true
-    });
-    if (gl === null)
-        throw "Could not create WebGL context";
     const variables = {
         time: 0,
         clicked: false,
         mouse: { x: 0.0, y: 0.0 }
     };
 
-    const renderer_ = renderer(gl, scene(sceneOptions), options, variables);
+    const renderer_ = renderer2(canvas, scene(sceneOptions), options, variables);
 
     let start = 0;
     let running = true;

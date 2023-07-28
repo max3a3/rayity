@@ -3,7 +3,7 @@
  */
 
 import { Options } from './options';
-import { renderer } from './renderer';
+import { renderer2 } from './renderer2';
 import { Scene } from './scene';
 
 /** A Rayity viewer to render a [[Scene]] to an [[HTMLElement] */
@@ -22,7 +22,7 @@ export function viewer(
 	canvas.height = options.height;
 	element.appendChild(canvas);
 
-	const gl = canvas.getContext("webgl", {
+	const gl = canvas.getContext("webgl2", {
 		preserveDrawingBuffer: true
 	});
 	if (gl === null)
@@ -34,7 +34,7 @@ export function viewer(
 		mouse: { x: 0.0, y: 0.0 }
 	};
 
-	const renderer_ = renderer(gl, scene, options, variables);
+	const renderer_ = renderer2(canvas, scene, options, variables);
 
 	canvas.addEventListener("click", event => {
 		if (!event.altKey)
@@ -63,7 +63,6 @@ export function viewer(
 	function loop(time: number) {
 		if (!start) start = time;
 		variables.time = (time - start) / 1000.0;
-
 		renderer_.render();
 
 		if (running)

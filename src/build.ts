@@ -173,14 +173,16 @@ export function build(
 	options: Options): Code {
 	/* language=glsl */
 	const code = `
+#version 300 es
 precision highp float;
 
-uniform sampler2D texture;
+uniform sampler2D iTexture;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 uniform bool iClicked;
 uniform float iTime;
-varying vec2 uv;
+in vec2 uv;
+out vec4 fragColor;
 
 const float PI = 3.14159;
 const float MAX_VALUE = 1e10;
@@ -358,14 +360,14 @@ void main() {
 		}
 	}
 
-	vec4 original = texture2D(texture, uv * 0.5 + 0.5);
+	vec4 original = texture(iTexture, uv * 0.5 + 0.5);
 	
 	if (iClicked) 
 		original *= 0.5;
 
 	original *= ${options.memory.toFixed(10)}; 
 		
-	gl_FragColor = original + vec4(total, iterations);
+	fragColor = original + vec4(total, iterations);
 
 }` + buildScene(scene, options);
 
